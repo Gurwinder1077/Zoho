@@ -1,0 +1,96 @@
+///////////////Get Accounts///////////////////////
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://www.zohoapis.com.au/crm/v2/Accounts?page=2',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_POSTFIELDS =>'',
+  CURLOPT_HTTPHEADER => array(
+   "authorization: Zoho-oauthtoken $access_token",
+    'Content-Type: application/json',
+    'Cookie: 3b64f55f8c=2d0de42bb419003ad254be6e800045aa; _zcsr_tmp=b53b4748-914d-4a45-9969-6f46aa02a33f; crmcsr=b53b4748-914d-4a45-9969-6f46aa02a33f'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+$data = json_decode($response, TRUE);
+
+///////////Create Accounts Api////////////////
+  $curl = curl_init();
+        
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://www.zohoapis.com.au/crm/v2/Accounts',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "data": [
+                {
+                    "Owner": {
+                        "name": "Mix",
+                        "id": "635870001",
+                        "email": "test@gmail.com"
+                    },
+                    "$currency_symbol": "'.$currency_symbol.'",
+                
+                    "Account_Type": "Customer",
+                  
+              
+                    "$state": "save",
+                    "$process_flow": false,
+                    "Billing_Country": "'.$mailing_Country.'",
+                    "$locked_for_me": false,
+                    "id": "'.$id.'",
+                    "Billing_Street": "'.$mailing_Street.'",
+                    "$editable": true,
+                    "Billing_Code":  "'.$mailing_Zip.'",
+                    "Shipping_City": "'.$mailing_City.'",
+                    "Shipping_Country": "'.$mailing_Country.'",
+                    "Shipping_Code": "'.$mailing_Zip.'",
+                    "Billing_City": "'.$mailing_City.'",
+                    "$zia_owner_assignment": "owner_recommendation_unavailable",
+        
+                    "Shipping_Street": "'.$mailing_Street.'",
+                    "Ownership": "Private",
+                    
+                    "Rating": "Acquired",
+                    "Shipping_State": "'.$mailing_State.'",
+             
+                    "Employees": null,
+                    
+                    "$review": null,
+                    "Phone": "'.$phone.'",
+                    "Account_Name": "'.$full_Name.'",
+                    "Account_Number": "'.$id.'",
+                    "Ticker_Symbol": "@",
+                    "Billing_State": "'.$mailing_State.'",
+                    "Tag": [],
+                    
+                    "$approval_state": "approved"
+                }
+            ]
+        
+        }',
+          CURLOPT_HTTPHEADER => array(
+             "authorization: Zoho-oauthtoken $access_token",
+            'Content-Type: application/json',
+            'Cookie: 3b64f55f8c=2d0de42bb419003ad254be6e800045aa; _zcsr_tmp=b53b4748-914d-4a45-9969-6f46aa02a33f; crmcsr=b53b4748-914d-4a45-9969-6f46aa02a33f'
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        
+        curl_close($curl);
+        $data = json_decode($response, TRUE);
