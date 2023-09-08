@@ -1,0 +1,10 @@
+
+$json = file_get_contents('php://input');
+
+file_put_contents("wooOrderCreate.txt",$json);
+$jsonData = file_get_contents('wooOrderCreate.txt');
+
+$rawData = json_decode($jsonData, true);
+echo"<pre>";
+//print_r($rawData);
+echo"</pre>"
