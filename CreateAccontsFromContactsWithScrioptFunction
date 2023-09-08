@@ -1,0 +1,35 @@
+Please follow the instructions to setup the custom function :
+
+Go to Setup -> Automation -> Actions -> Custom Functions -> Configure Custom Function -> Write your own ->
+
+1) Choose module as 'Contacts'
+2) Give custom function name of your choice
+3) Copy and paste the code below
+
+
+contDetails = zoho.crm.getRecordById("Contacts",contId.toLong());
+//info contDetails;
+mp = Map();
+mp.put("Owner",ifnull(contDetails.get("Owner"),"").get("id"));
+mp.put("Account_Name",ifnull(contDetails.get("Full_Name"),""));
+mp.put("Email",ifnull(contDetails.get("Email"),""));
+mp.put("Phone",ifnull(contDetails.get("Phone"),""));
+mp.put("currency_symbol",ifnull(contDetails.get("currency_symbol"),""));
+mp.put("Shipping_State",ifnull(contDetails.get("Mailing_State"),""));
+mp.put("Billing_State",ifnull(contDetails.get("Mailing_State"),""));
+mp.put("Billing_Street",ifnull(contDetails.get("Mailing_Street"),""));
+mp.put("Shipping_Street",ifnull(contDetails.get("Mailing_Street"),""));
+mp.put("Shipping_Code",ifnull(contDetails.get("Mailing_Zip"),""));
+mp.put("Billing_Code",ifnull(contDetails.get("Mailing_Zip"),""));
+mp.put("Billing_Country",ifnull(contDetails.get("Mailing_Country"),""));
+mp.put("Shipping_Country",ifnull(contDetails.get("Mailing_Country"),""));
+mp.put("Account_Number",ifnull(contDetails.get("id"),""));
+create = zoho.crm.createRecord("Accounts",mp);
+info mp;
+info create;
+
+
+
+4) Click on 'Edit arguments'
+      a) Choose Contacts id from the drop-down list - give the name as 'contId' and save
+5) Click on save and Associate with workflow for Contacts
