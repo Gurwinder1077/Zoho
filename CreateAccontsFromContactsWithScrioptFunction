@@ -33,3 +33,5 @@ info create;
 4) Click on 'Edit arguments'
       a) Choose Contacts id from the drop-down list - give the name as 'contId' and save
 5) Click on save and Associate with workflow for Contacts
+
+6) After that add this Function into a web flow
